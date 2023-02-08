@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
 import PropTypes from "prop-types";
 import Merchandise from "./Merchandise";
+import NewMerchandiseForm from "./NewMerchandiseForm";
 
 function MerchandiseList(props){
+  const [merchList, setMerchList] = useState(() => {
+    // getting stored value
+    const saved = localStorage.getItem("merchList");
+    const initialValue = JSON.parse(saved);
+    return initialValue || [];
+  });
+
+  function handleAddingNewMerchToList(newMerch) {
+    const newMainMerchList = merchList.concat(newMerch);
+    setMerchList(newMainMerchList);
+  }
+
+  useEffect(() => {
+    // storing input name
+    localStorage.setItem("merchList", JSON.stringify(merchList));
+  }, [merchList]);
 
   const merchandiseStyle = {
     backgroundColor: '#ff0000',
@@ -16,6 +34,8 @@ function MerchandiseList(props){
     height: '2px',
     backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))'
   }
+
+
 
   const mainMerchandiseList = [
   {
@@ -40,19 +60,20 @@ function MerchandiseList(props){
 
   return (
     <React.Fragment>
-    <hr style={hr} />
-    <div style={merchandiseStyle}>
-      {mainMerchandiseList.map((merchandise, index) =>
-        <Merchandise name={merchandise.name}
-        image={merchandise.image}
-        text={merchandise.text}
-        price={merchandise.price}
-        key={index} 
-        object={merchandise}
-        handleAddingNewMerchToCart={props.handleAddingNewMerchToCart}
-        />
-      )}
-    </div>
+      <hr style={hr} />
+      <div style={merchandiseStyle}>
+        {merchList.map((merchandise, index) =>
+          <Merchandise name={merchandise.name}
+          image={merchandise.image}
+          text={merchandise.text}
+          price={merchandise.price}
+          key={index} 
+          object={merchandise}
+          handleAddingNewMerchToCart={props.handleAddingNewMerchToCart}
+          />
+        )}
+      </div>
+      <NewMerchandiseForm onNewMerchandiseCreation={handleAddingNewMerchToList}/>
     </React.Fragment>
   );
 }

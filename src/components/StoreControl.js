@@ -2,6 +2,7 @@ import React from "react";
 import MerchandiseList from "./MerchandiseList";
 import Cart from "./Cart";
 
+
 class StoreControl extends React.Component {
 
 

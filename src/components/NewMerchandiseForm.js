@@ -13,14 +13,14 @@ function NewMerchandiseForm(props){
       price: event.target.price.value, 
       id: v4()
   });
-
+}
   return (
     <div>
       <form onSubmit={handleNewMerchandiseFormSubmission}>
         <input
           type='text'
           name='name'
-          placeholder='Pair Names' />
+          placeholder='Item Name' />
         <input
           type='text'
           name='image'
@@ -36,7 +36,7 @@ function NewMerchandiseForm(props){
       </form>
     </div>
   );
-}
+
 }
 
 NewMerchandiseForm.propTypes = {
