@@ -1,4 +1,6 @@
 import React from "react";
+import MerchandiseList from "./MerchandiseList";
+import Cart from "./Cart";
 
 class StoreControl extends React.Component {
 
@@ -17,18 +19,19 @@ class StoreControl extends React.Component {
   }
 
   handleAddingNewMerchToCart = (newMerch) => {
-    const newCart = this.state.cartContents.concat(newCart);
+    const newCart = this.state.cartContents.concat(newMerch);
     this.setState({cartContents: newCart,
                   cartVisibleOnPage: false}) // i am assuming we want to have users manually click into cart?
   }
 
   render() {
     let currentlyVisibleState = null;
+    let buttonText = null;
     if (this.state.cartVisibleOnPage) {
-      currentlyVisibleState = //cart
+      currentlyVisibleState = <Cart cartContents={this.state.cartContents} />
       buttonText = "return to store"; 
     } else {
-      currentlyVisibleState = // store / merchandise
+      currentlyVisibleState = <MerchandiseList handleAddingNewMerchToCart={this.handleAddingNewMerchToCart} />
       buttonText = "view my cart"; //later make this an image of a shopping cart...?
     }
     return (
