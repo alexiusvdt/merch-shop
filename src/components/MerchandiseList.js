@@ -4,6 +4,19 @@ import Merchandise from "./Merchandise";
 
 function MerchandiseList(props){
 
+  const merchandiseStyle = {
+    backgroundColor: '#ff0000',
+    display: 'flex',
+    fontFamily: 'monospace',
+    justifyContent: "space-around"
+  }
+
+  const hr = {
+    border: '0',
+    height: '2px',
+    backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))'
+  }
+
   const mainMerchandiseList = [
   {
     name: "whatever",
@@ -27,7 +40,8 @@ function MerchandiseList(props){
 
   return (
     <React.Fragment>
-      <hr/>
+    <hr style={hr} />
+    <div style={merchandiseStyle}>
       {mainMerchandiseList.map((merchandise, index) =>
         <Merchandise name={merchandise.name}
         image={merchandise.image}
@@ -38,6 +52,7 @@ function MerchandiseList(props){
         handleAddingNewMerchToCart={props.handleAddingNewMerchToCart}
         />
       )}
+    </div>
     </React.Fragment>
   );
 }

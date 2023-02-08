@@ -3,11 +3,17 @@ import Header from "./Header"
 import StoreControl from "./StoreControl"
 
 function App() {
+  const appStyles = {
+    width: '75%',
+    margin: 'auto',
+    backgroundColor: "#ff820d"
+  }
+
   return (
-    <React.Fragment>
+    <div className={appStyles}>
       <Header />
       <StoreControl />
-    </React.Fragment>
+    </div>
   )
 }
 

@@ -4,6 +4,7 @@ import Cart from "./Cart";
 
 class StoreControl extends React.Component {
 
+
   constructor(props) {
     super(props);
     this.state = {
@@ -27,17 +28,37 @@ class StoreControl extends React.Component {
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
+    let buttonClass = null;
+    let myStyledComponentStyles = {
+      backgroundColor: '#ecf0f1',
+      fontFamily: 'sans-serif',
+      paddingBottom: '50px'
+    }
+
+    let myStyledComponentButton = {
+      width: '500px',
+      padding: '20px',
+      display: 'block',
+      margin: 'auto',
+      marginTop: "50px",
+      fontSize: "1.5rem"
+    }
+
     if (this.state.cartVisibleOnPage) {
       currentlyVisibleState = <Cart cartContents={this.state.cartContents} />
-      buttonText = "return to store"; 
+      buttonText = " Return to store"; 
+      buttonClass = "bi bi-shop";
     } else {
       currentlyVisibleState = <MerchandiseList handleAddingNewMerchToCart={this.handleAddingNewMerchToCart} />
-      buttonText = "view my cart"; //later make this an image of a shopping cart...?
+      buttonText = " View your cart"; //later make this an image of a shopping cart...?
+      buttonClass = "bi bi-cart";
     }
     return (
       <React.Fragment>
+      <div style={myStyledComponentStyles}>
         {currentlyVisibleState}
-        <button onClick={this.handleClick}>{buttonText}</button>
+        <button style={myStyledComponentButton} onClick={this.handleClick} className={buttonClass}>{buttonText}</button>
+      </div>
       </React.Fragment>
     )
   }
