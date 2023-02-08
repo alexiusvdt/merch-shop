@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# Merch Shop
+
+## Component Diagram
+
+![Component Diagram](/comp_diagram.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
