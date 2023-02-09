@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from "react";
+import { useCookies } from 'react-cookie';
+
 
 import PropTypes from "prop-types";
 import Merchandise from "./Merchandise";
 import NewMerchandiseForm from "./NewMerchandiseForm";
 
 function MerchandiseList(props){
+
   const [merchList, setMerchList] = useState(() => {
-    // getting stored value
+    // getting stored value npm install react-cookie
     const saved = localStorage.getItem("merchList");
     const initialValue = JSON.parse(saved);
     return initialValue || [];
   });
 
   function handleAddingNewMerchToList(newMerch) {
-    const newMainMerchList = merchList.concat(newMerch);
+    const newMainMerchList = mainMerchandiseList.concat(newMerch);
     setMerchList(newMainMerchList);
   }
 
