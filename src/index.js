@@ -1,13 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/App';
-import { CookiesProvider } from "react-cookie";
+// import './index.css';
+import { createStore } from "redux";
+import reducer from "./reducers/merch-list-reducer";;
+import { Provider } from 'react-redux';
+
+
+const store = createStore(reducer);
+store.subscribe(() =>
+  console.log(store.getState())
+  );
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <CookiesProvider>
+    <Provider store={store}>
       <App />
-    </CookiesProvider>
+    </Provider>
   </React.StrictMode>
 );
